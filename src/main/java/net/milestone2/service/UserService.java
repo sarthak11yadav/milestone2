@@ -82,6 +82,11 @@ public class UserService{
         return userRepo.findByMobileno(Mobileno);
     }
 
+    @Transactional
+    public  User findUserByUsername(String username){
+        return userRepo.findByUsername(username);
+    }
+
 
     public User findByEmail(String email) {
         return userRepo.findByEmail(email);
