@@ -17,6 +17,9 @@ public class Transaction {
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Long txnId;
 
+    @Column
+    private String userNumber;
+
     @Column(name = "payerWalletId")
     public String payerWalletId;
 

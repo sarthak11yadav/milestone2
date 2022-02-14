@@ -4,10 +4,11 @@ package net.milestone2.service;
 import net.milestone2.DAO.TransactionRepo;
 import net.milestone2.model.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.awt.print.Pageable;
+
 import java.util.List;
 
 @Service
@@ -28,6 +29,14 @@ public class TransactionService {
     {
         return transactionRepo.findByTxnId(txnId);
     }
+
+
+    public List<Transaction> findAllByUserNumber(String userMobileNumber, Pageable pageable)
+    {
+        List<Transaction> userTransactions= transactionRepo.findAllByUserNumber(userMobileNumber,pageable);
+        return userTransactions;
+    }
+
 
 
 

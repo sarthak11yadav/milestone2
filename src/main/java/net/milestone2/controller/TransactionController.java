@@ -9,11 +9,12 @@ import net.milestone2.model.Wallet;
 import net.milestone2.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.Pageable;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -68,7 +69,15 @@ public class TransactionController {
             walletService.updateWallet(PayeeWallet);
             walletService.updateWallet(PayerWallet);
             txn.setStatus("Success");
-            transactionService.CreateTransaction(txn);
+            Transaction txn1=txn;
+            Transaction txn2=txn;
+
+            txn1.setUserNumber(payee_wid);
+            txn2.setUserNumber(payer_wid);
+
+            transactionService.CreateTransaction(txn1);
+            transactionService.CreateTransaction(txn2);
+
 
             return new MyResponse("Money transferred successfully",HttpStatus.CREATED);
         }
@@ -100,6 +109,19 @@ public class TransactionController {
             throw new ResourceNotFoundException("Transaction with this id does not exist");
         }
         return txn.getStatus();
+    }
+    @GetMapping(value="/gettransaction/{id}")
+    public Object transactionSummary(@PathVariable long id, Pageable pageable)
+    {
+        User val = userService.getUserById(id);
+
+        //User with a given userId must be present
+
+            String userMobileNumber=val.getMobileno();
+            List<Transaction> userTransactions= transactionService.findAllByUserNumber(userMobileNumber,pageable);
+            return userTransactions;
+
+
     }
 
 
