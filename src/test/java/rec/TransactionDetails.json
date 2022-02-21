@@ -1,0 +1,7 @@
+{
+  "txnId": 8,
+  "payerWalletId":"1234567890",
+  "payeeWalletId": "9123456780",
+  "amount":"10.50",
+  "status": "Success"
+}

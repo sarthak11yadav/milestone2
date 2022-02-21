@@ -1,0 +1,12 @@
+{
+  "userId": 3,
+  "username": "ab12",
+  "mobileno": "1234567890",
+  "password": "kamlesh@22",
+  "email": "ab33@gmail.com",
+  "address": "RJH",
+  "wallet": {
+    "walletId": "1234567890",
+    "curr_balance": 183.2
+  }
+}
