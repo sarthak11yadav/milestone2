@@ -8,6 +8,7 @@ import net.milestone2.model.User;
 import net.milestone2.model.Wallet;
 import net.milestone2.service.*;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -29,6 +30,8 @@ public class TransactionController {
 
     @Autowired
     private UserService userService;
+
+    private static final Logger logger= Logger.getLogger(TransactionController.class);
 
     @PostMapping("/transaction")
     public MyResponse TransferMoney(@RequestBody Transaction txn)
@@ -106,8 +109,10 @@ public class TransactionController {
         }
         catch (Exception e)
         {
-            throw new ResourceNotFoundException("Transaction with this id does not exist");
+            logger.debug("Transaction failed");
+            throw new ResourceNotFoundException("Transaction with" + txnId + "id does not exist");
         }
+        logger.debug("Transaction status retrieved of" + txnId + "transaction id");
         return txn.getStatus();
     }
     @GetMapping(value="/gettransaction/{id}")
@@ -119,6 +124,7 @@ public class TransactionController {
 
             String userMobileNumber=val.getMobileno();
             List<Transaction> userTransactions= transactionService.findAllByUserNumber(userMobileNumber,pageable);
+        logger.debug("Transaction retrieved retrieved by" + id );
             return userTransactions;
 
 

@@ -10,6 +10,7 @@ import net.milestone2.model.Wallet;
 import net.milestone2.service.TransactionService;
 import net.milestone2.service.UserService;
 import net.milestone2.service.WalletService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,12 @@ public class WalletController {
 
     @Autowired
     TransactionService transactionService;
+    private static final Logger logger= Logger.getLogger(WalletController.class);
 
+
+//    @Autowired
+//    KafkaTemplate<String,String> kafkatemplate;
+//    private static final String TOPIC = "paytm";
 
     @PostMapping("/wallet/{Mobileno}")
     public MyResponse createWallet(@PathVariable("Mobileno") String Mobileno)
@@ -45,11 +51,13 @@ public class WalletController {
                     User user = userService.findByMobileno(Mobileno);
                     user.setWallet(w);
                     userService.updateUser(user);
-
-                    return new MyResponse("Wallet creates successfully", HttpStatus.CREATED);
+//                        kafkatemplate.send(TOPIC,"Wallet Created");
+                        logger.info("Wallet created at given number successfully");
+                        return new MyResponse("Wallet creates successfully", HttpStatus.CREATED);
                 }
                     else
                     {
+                        logger.debug("wallet already exist");
                         throw new BadRequestException("User has already Wallet !");
                     }
 //                }
@@ -86,6 +94,7 @@ public class WalletController {
             txn.setStatus("Success");
             transactionService.CreateTransaction(txn);
 
+            logger.info("Wallet money added");
             return new MyResponse("Amount added to wallet",HttpStatus.CREATED);
 
 
@@ -94,6 +103,7 @@ public class WalletController {
         }
         catch (Exception e)
         {
+            logger.info("Unsuccessful addition of money");
             throw new BadRequestException("can not add money");
 
         }
@@ -103,6 +113,7 @@ public class WalletController {
     @GetMapping("/wallet/{walletId}")
     public Optional<Wallet>getWalletDataById(@PathVariable String walletId)
     {
+        logger.info("Wallet retrieved successfully");
         return walletService.getWalletById(walletId);
     }
 
@@ -111,6 +122,7 @@ public class WalletController {
     {
 
         walletService.DeleteWallet(id);
+        logger.info("Wallet deleted successfully");
         return new ResponseEntity<String>("Wallet deleted Sucessfully",HttpStatus.OK);
     }
 
