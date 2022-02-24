@@ -1,0 +1,120 @@
+2022-02-23 22:34:27,960 DEBUG [main] TransactionController:115 - Transaction status retrieved of1transaction id
+2022-02-23 22:34:28,109  INFO [main] WalletController:116 - Wallet retrieved successfully
+2022-02-23 23:12:24,064  INFO [http-nio-8080-exec-5] UserController:49 - user retrieved of1userid
+2022-02-24 18:12:14,894  INFO [http-nio-8080-exec-5] UserController:49 - user retrieved of1userid
+2022-02-24 18:12:56,033 DEBUG [http-nio-8080-exec-7] UserController:41 - user created successfully 
+2022-02-24 18:19:52,083 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 18:21:01,895 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 18:22:36,054 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 18:22:57,976 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 18:24:11,181 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 18:26:13,482  INFO [http-nio-8080-exec-2] UserController:49 - user retrieved of4userid
+2022-02-24 18:26:17,860  INFO [http-nio-8080-exec-3] UserController:49 - user retrieved of5userid
+2022-02-24 18:27:50,889 DEBUG [http-nio-8080-exec-6] UserController:59 - user deleted successfully at id3
+2022-02-24 18:27:57,056 DEBUG [http-nio-8080-exec-7] UserController:59 - user deleted successfully at id4
+2022-02-24 18:27:59,427 DEBUG [http-nio-8080-exec-8] UserController:59 - user deleted successfully at id5
+2022-02-24 18:28:01,800 DEBUG [http-nio-8080-exec-9] UserController:59 - user deleted successfully at id7
+2022-02-24 18:29:29,310 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 18:29:55,736 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 18:31:23,827 DEBUG [http-nio-8080-exec-2] UserController:59 - user deleted successfully at id3
+2022-02-24 18:31:29,080 DEBUG [http-nio-8080-exec-3] UserController:59 - user deleted successfully at id3
+2022-02-24 18:32:30,486 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 18:33:56,715 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 18:34:40,764 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 18:36:52,383 DEBUG [http-nio-8080-exec-6] UserController:59 - user deleted successfully at id3
+2022-02-24 18:36:53,394 DEBUG [http-nio-8080-exec-7] UserController:59 - user deleted successfully at id3
+2022-02-24 18:37:17,223 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 18:39:48,658 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 18:40:06,620 DEBUG [http-nio-8080-exec-10] UserController:59 - user deleted successfully at id3
+2022-02-24 18:40:07,379 DEBUG [http-nio-8080-exec-1] UserController:59 - user deleted successfully at id3
+2022-02-24 18:40:07,918 DEBUG [http-nio-8080-exec-2] UserController:59 - user deleted successfully at id3
+2022-02-24 18:40:10,627 DEBUG [http-nio-8080-exec-3] UserController:59 - user deleted successfully at id4
+2022-02-24 18:40:31,659 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 18:45:34,796 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 18:48:58,727 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 19:00:58,462 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 19:01:24,515 DEBUG [http-nio-8080-exec-5] UserController:59 - user deleted successfully at id3
+2022-02-24 19:01:26,312 DEBUG [http-nio-8080-exec-7] UserController:59 - user deleted successfully at id3
+2022-02-24 19:01:26,934 DEBUG [http-nio-8080-exec-8] UserController:59 - user deleted successfully at id3
+2022-02-24 19:01:44,491 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 19:02:08,613  INFO [http-nio-8080-exec-9] UserController:49 - user retrieved of2userid
+2022-02-24 19:02:10,648  INFO [http-nio-8080-exec-10] UserController:49 - user retrieved of3userid
+2022-02-24 19:02:12,687  INFO [http-nio-8080-exec-1] UserController:49 - user retrieved of1userid
+2022-02-24 19:02:14,519  INFO [http-nio-8080-exec-2] UserController:49 - user retrieved of4userid
+2022-02-24 19:02:15,966  INFO [http-nio-8080-exec-3] UserController:49 - user retrieved of5userid
+2022-02-24 19:02:56,810 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 19:03:17,195  INFO [http-nio-8080-exec-6] UserController:49 - user retrieved of3userid
+2022-02-24 19:03:20,314  INFO [http-nio-8080-exec-7] UserController:49 - user retrieved of4userid
+2022-02-24 19:03:22,165  INFO [http-nio-8080-exec-8] UserController:49 - user retrieved of2userid
+2022-02-24 19:03:24,619  INFO [http-nio-8080-exec-9] UserController:49 - user retrieved of3userid
+2022-02-24 19:04:06,870 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 19:04:58,646  INFO [http-nio-8080-exec-2] UserController:49 - user retrieved of3userid
+2022-02-24 19:05:01,608  INFO [http-nio-8080-exec-3] UserController:49 - user retrieved of4userid
+2022-02-24 19:05:04,804  INFO [http-nio-8080-exec-4] UserController:49 - user retrieved of2userid
+2022-02-24 19:05:06,784  INFO [http-nio-8080-exec-5] UserController:49 - user retrieved of3userid
+2022-02-24 19:05:48,708 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 19:06:28,360 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 19:07:44,862  INFO [http-nio-8080-exec-1] UserController:49 - user retrieved of3userid
+2022-02-24 19:08:13,528 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 19:08:23,385  INFO [http-nio-8080-exec-3] UserController:49 - user retrieved of3userid
+2022-02-24 19:08:25,988  INFO [http-nio-8080-exec-4] UserController:49 - user retrieved of4userid
+2022-02-24 19:08:28,409  INFO [http-nio-8080-exec-5] UserController:49 - user retrieved of2userid
+2022-02-24 19:09:18,629 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 19:09:27,420  INFO [http-nio-8080-exec-6] UserController:49 - user retrieved of2userid
+2022-02-24 19:09:29,495  INFO [http-nio-8080-exec-7] UserController:49 - user retrieved of3userid
+2022-02-24 19:09:41,884  INFO [http-nio-8080-exec-8] UserController:49 - user retrieved of3userid
+2022-02-24 19:10:01,700  INFO [http-nio-8080-exec-4] UserController:49 - user retrieved of3userid
+2022-02-24 19:22:16,395  INFO [http-nio-8080-exec-7] UserController:49 - user retrieved of3userid
+2022-02-24 19:22:18,186  INFO [http-nio-8080-exec-8] UserController:49 - user retrieved of2userid
+2022-02-24 19:35:43,593 DEBUG [main] UserController:59 - user deleted successfully at id3
+2022-02-24 19:36:09,610 DEBUG [main] UserController:59 - user deleted successfully at id2
+2022-02-24 19:37:06,011  INFO [http-nio-8080-exec-2] UserController:49 - user retrieved of2userid
+2022-02-24 19:37:10,855  INFO [http-nio-8080-exec-1] UserController:49 - user retrieved of1userid
+2022-02-24 19:37:26,355 DEBUG [http-nio-8080-exec-3] UserController:59 - user deleted successfully at id1
+2022-02-24 19:42:49,747 DEBUG [http-nio-8080-exec-5] UserController:41 - user created successfully 
+2022-02-24 19:44:15,658 DEBUG [http-nio-8080-exec-8] UserController:41 - user created successfully 
+2022-02-24 19:44:16,742 DEBUG [http-nio-8080-exec-9] UserController:41 - user created successfully 
+2022-02-24 19:44:17,684 DEBUG [http-nio-8080-exec-10] UserController:41 - user created successfully 
+2022-02-24 19:44:18,473 DEBUG [http-nio-8080-exec-1] UserController:41 - user created successfully 
+2022-02-24 21:52:08,844 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 21:52:29,986 DEBUG [http-nio-8080-exec-2] UserController:41 - user created successfully 
+2022-02-24 21:52:38,899 DEBUG [http-nio-8080-exec-3] UserController:41 - user created successfully 
+2022-02-24 21:53:52,766  INFO [http-nio-8080-exec-8] UserController:49 - user retrieved of1userid
+2022-02-24 21:53:57,655  INFO [http-nio-8080-exec-9] UserController:49 - user retrieved of2userid
+2022-02-24 21:53:59,144  INFO [http-nio-8080-exec-10] UserController:49 - user retrieved of3userid
+2022-02-24 21:54:12,203 DEBUG [http-nio-8080-exec-1] UserController:41 - user created successfully 
+2022-02-24 21:54:33,073  INFO [http-nio-8080-exec-2] UserController:49 - user retrieved of4userid
+2022-02-24 21:54:36,015  INFO [http-nio-8080-exec-3] UserController:49 - user retrieved of5userid
+2022-02-24 21:54:37,854  INFO [http-nio-8080-exec-4] UserController:49 - user retrieved of6userid
+2022-02-24 21:54:42,979  INFO [http-nio-8080-exec-5] UserController:49 - user retrieved of7userid
+2022-02-24 21:54:45,552  INFO [http-nio-8080-exec-6] UserController:49 - user retrieved of8userid
+2022-02-24 21:54:49,133  INFO [http-nio-8080-exec-7] UserController:49 - user retrieved of9userid
+2022-02-24 21:54:52,455  INFO [http-nio-8080-exec-8] UserController:49 - user retrieved of10userid
+2022-02-24 21:54:58,566  INFO [http-nio-8080-exec-9] UserController:49 - user retrieved of6userid
+2022-02-24 21:55:07,740 DEBUG [http-nio-8080-exec-10] UserController:59 - user deleted successfully at id6
+2022-02-24 21:55:49,086 DEBUG [main] UserController:59 - user deleted successfully at id1
+2022-02-24 21:59:18,237  INFO [http-nio-8080-exec-3] UserController:49 - user retrieved of7userid
+2022-02-24 21:59:21,493  INFO [http-nio-8080-exec-4] UserController:49 - user retrieved of7userid
+2022-02-24 21:59:55,840 DEBUG [main] UserController:59 - user deleted successfully at id7
+2022-02-24 22:00:56,735 DEBUG [main] UserController:59 - user deleted successfully at id8
+2022-02-24 22:01:26,458  INFO [http-nio-8080-exec-7] UserController:49 - user retrieved of7userid
+2022-02-24 22:02:04,615 DEBUG [main] UserController:59 - user deleted successfully at id9
+2022-02-24 22:39:17,738 DEBUG [main] UserController:41 - user created successfully 
+2022-02-24 22:41:52,174  INFO [http-nio-8080-exec-4] UserController:49 - user retrieved of1userid
+2022-02-24 22:41:54,276  INFO [http-nio-8080-exec-5] UserController:49 - user retrieved of2userid
+2022-02-24 22:41:55,778  INFO [http-nio-8080-exec-6] UserController:49 - user retrieved of3userid
+2022-02-24 22:41:57,530  INFO [http-nio-8080-exec-7] UserController:49 - user retrieved of4userid
+2022-02-24 22:41:58,618  INFO [http-nio-8080-exec-8] UserController:49 - user retrieved of5userid
+2022-02-24 22:42:00,171  INFO [http-nio-8080-exec-10] UserController:49 - user retrieved of6userid
+2022-02-24 22:42:01,450  INFO [http-nio-8080-exec-9] UserController:49 - user retrieved of7userid
+2022-02-24 22:42:03,338  INFO [http-nio-8080-exec-1] UserController:49 - user retrieved of8userid
+2022-02-24 22:42:04,997  INFO [http-nio-8080-exec-2] UserController:49 - user retrieved of9userid
+2022-02-24 22:42:07,216  INFO [http-nio-8080-exec-3] UserController:49 - user retrieved of10userid
+2022-02-24 22:42:27,373  INFO [http-nio-8080-exec-4] UserController:49 - user retrieved of11userid
+2022-02-24 22:42:30,266  INFO [http-nio-8080-exec-5] UserController:49 - user retrieved of10userid
+2022-02-24 22:48:26,398  INFO [http-nio-8080-exec-7] WalletController:55 - Wallet created at given number successfully
+2022-02-24 22:51:11,620 DEBUG [http-nio-8080-exec-1] WalletController:60 - wallet already exist
+2022-02-24 22:53:47,791 DEBUG [main] WalletController:60 - wallet already exist
+2022-02-24 22:58:20,002 DEBUG [main] WalletController:60 - wallet already exist
+2022-02-24 23:07:22,926  INFO [http-nio-8080-exec-3] WalletController:97 - Wallet money added
+2022-02-24 23:08:53,043  INFO [main] WalletController:97 - Wallet money added

@@ -1,81 +1,135 @@
 package net.milestone2.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import net.milestone2.DTO.JwtRequest;
+import net.milestone2.DTO.JwtResponse;
 import net.milestone2.Utilities.MyResponse;
-import net.milestone2.controller.WalletController;
+import net.milestone2.model.User;
 import net.milestone2.model.Wallet;
+import net.milestone2.service.UserService;
 import net.milestone2.service.WalletService;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import java.util.List;
-import java.util.Optional;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
+import static org.springframework.http.HttpHeaders.AUTHORIZATION;
 
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-@AutoConfigureMockMvc
-@ExtendWith(MockitoExtension.class)
 @SpringBootTest
-public class WalletControllerTest {
-    @Mock
-    private WalletService walletService;
-    private Wallet wallet;
-    private List<Wallet>walletList;
-    @InjectMocks
-    private WalletController walletController;
+@AutoConfigureMockMvc
+
+class WalletControllerTest {
+
     @Autowired
     private MockMvc mockMvc;
-    @BeforeEach
-    public void setWallet()
-    {
-        wallet=new Wallet();
-        wallet.setWalletId("1");
-        wallet.setCurr_balance(20);
-        mockMvc= MockMvcBuilders.standaloneSetup(walletController).build();
-    }
-    @AfterEach
-    public void tearWallet()
-    {
-        wallet=null;
-    }
-    @Test
-    public void createWalletTest()throws Exception
-    {
-        lenient().when(walletService.CreateWallet(wallet)).thenReturn(wallet);
-        mockMvc.perform(post("/wallet/1").contentType(MediaType.APPLICATION_JSON).content(asJsonString(wallet))).andExpect(status().isCreated());
-        verify(walletService,times(1)).CreateWallet(wallet);
+
+    @Autowired
+    ObjectMapper objectMapper;
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private WalletService walletService;
+
+    // for generate token .
+    public  String  GenerateMockMvcToken(String userWalletId) throws Exception {
+        // user -->username and password .
+        User user=userService.findByMobileno(userWalletId);
+
+        String username=user.getUsername();
+        String password=user.getPassword();
+
+        JwtRequest jwtRequest=new JwtRequest(username,password);
+
+        String requestTokenJson =objectMapper.writeValueAsString(jwtRequest);
+
+        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.post("/token")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .content(requestTokenJson))
+                .andExpect( MockMvcResultMatchers.status().isOk())
+                .andReturn();
+        String resultContent=result.getResponse().getContentAsString();
+        JwtResponse token=objectMapper.readValue(resultContent,JwtResponse.class);
+
+        String userToken =token.getToken();
+
+        return userToken;
     }
 
+
+
     @Test
-    public void getWalletById() throws Exception
-    {
-        Mockito.when(walletService.getWalletById(wallet.getWalletId())).thenReturn(Optional.ofNullable(wallet));
-        mockMvc.perform(get("/wallet/1").contentType(MediaType.APPLICATION_JSON).content(asJsonString(wallet))).andExpect(status().isOk());
+    void createWallet() throws Exception {
+        String mobileNumber="2";
+
+        //generate token
+        String userToken = GenerateMockMvcToken(mobileNumber);
+
+
+        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.post("/wallet/{mobileNumber}",mobileNumber)
+                        .header(AUTHORIZATION,"Bearer "+userToken))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        String response =result.getResponse().getContentAsString();
+//        Assert.assertEquals("User has already Wallet !",response);
+        MyResponse msg =objectMapper.readValue(response, MyResponse.class);
+
+        // Response class .
+        String walletResJson=new String(Files.readAllBytes(Paths.get("src/test/java/rec/CreateWalletRes.json")));
+        MyResponse resMsg =objectMapper.readValue(walletResJson, MyResponse.class);
+
+        Assert.assertEquals( resMsg.getMsg(),msg.getMsg());
+        Assert.assertEquals(resMsg.getStatus(),msg.getStatus());
+
+
+        //Delete wallet as well because it is only for testing purpose.
+//        walletService.DeleteWalletById(mobileNumber);
+
+
     }
-    public static String asJsonString(final Object obj)
-    {
-        try {
-            return new ObjectMapper().writeValueAsString(obj);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    @Test
+    void addMoney() throws Exception {
+
+        String mobileNumber="2";
+        Long amount=10L;
+        //generate token
+        String userToken = GenerateMockMvcToken(mobileNumber);
+
+        final String requestUrl ="/wallet/"+mobileNumber+"/"+String.valueOf(amount);
+        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.post(requestUrl)
+                        .header(AUTHORIZATION,"Bearer "+userToken))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn();
+
+        String response =result.getResponse().getContentAsString();
+        MyResponse msg =objectMapper.readValue(response, MyResponse.class);
+
+        // Response class .
+        String walletResJson=new String(Files.readAllBytes(Paths.get("src/test/java/rec/AddMoneyRes.json")));
+        MyResponse resMsg =objectMapper.readValue(walletResJson, MyResponse.class);
+
+
+        Assert.assertEquals(resMsg.getMsg() ,msg.getMsg());
+        Assert.assertEquals(resMsg.getStatus(),msg.getStatus());
+
+        //Substract add money from the wallet.
+        // first find the wallet .
+        Wallet w =walletService.getWalletById(mobileNumber).orElseThrow(()-> new RuntimeException("Invalid ID"));
+        w.setCurr_balance(w.getCurr_balance()-amount);
+        walletService.updateWallet(w);
+
+
     }
+
 }

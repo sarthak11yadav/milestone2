@@ -58,7 +58,7 @@ public class UserController {
     {
         logger.debug("user deleted successfully at id" + id);
         userService.deleteUser(id);
-        return new ResponseEntity<String>("User deleted Sucessfully",HttpStatus.OK);
+        return new ResponseEntity<String>("User Deleted sucessfully",HttpStatus.OK);
     }
 
 
