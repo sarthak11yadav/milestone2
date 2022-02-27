@@ -19,6 +19,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -73,6 +74,7 @@ class WalletControllerTest {
         String mobileNumber="2";
 
         //generate token
+        Assert.assertThrows(NullPointerException.class,() -> GenerateMockMvcToken("8"));
         String userToken = GenerateMockMvcToken(mobileNumber);
 
 
@@ -104,6 +106,7 @@ class WalletControllerTest {
         String mobileNumber="2";
         Long amount=10L;
         //generate token
+        Assert.assertThrows(NullPointerException.class,() -> GenerateMockMvcToken("8"));
         String userToken = GenerateMockMvcToken(mobileNumber);
 
         final String requestUrl ="/wallet/"+mobileNumber+"/"+String.valueOf(amount);

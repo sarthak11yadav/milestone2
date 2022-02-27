@@ -16,6 +16,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @ExtendWith(MockitoExtension.class)
 @ExtendWith(SpringExtension.class)
@@ -50,6 +51,7 @@ class UserServiceTest {
         User user=objectMapper.readValue(userJson,User.class);
         Mockito.when(userRepo.findByMobileno(user.getMobileno())).thenReturn(user);
         Assert.assertEquals(userService.findByMobileno(user.getMobileno()),user);
+//        assertThrows(IOException.class,() -> userService.findByMobileno("20"));
     }
 
     @Test
