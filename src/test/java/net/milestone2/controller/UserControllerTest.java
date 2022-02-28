@@ -1,6 +1,5 @@
 package net.milestone2.controller;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import net.milestone2.DTO.JwtRequest;
 import net.milestone2.DTO.JwtResponse;
@@ -86,22 +85,39 @@ class UserControllerTest {
 
 
     }
+    @Test
+    void getUserById() throws Exception {
+
+        String userId="13";
+        String expectedresponse=new String(Files.readAllBytes(Paths.get("src/test/java/rec/UserGetRes.json")));
+
+        String response= mockMvc.perform(MockMvcRequestBuilders.get("/users/13")
+                        .param("userId" ,userId))
+                .andExpect( MockMvcResultMatchers.status().isOk())
+                .andReturn()
+                .getResponse()
+                        .getContentAsString();
+        Assert.assertEquals("Response does not match", expectedresponse, response);
+
+    }
+
 
     @Test
     void deleteUser() throws Exception {
-        Long userId=9L;
+        Long userId=17L;
         //Store already user so we can back again data .
         User user=userService.getUserById(userId);
 
         //generate token
         String userToken = GenerateMockMvcToken(user);
 
-        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.delete("/users/9")
+        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.delete("/users/17")
                         .header(AUTHORIZATION,"Bearer "+userToken))
                 .andExpect( MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
         String resultContent=result.getResponse().getContentAsString();
+
 
         Assert.assertEquals("User Deleted sucessfully",resultContent) ;
 

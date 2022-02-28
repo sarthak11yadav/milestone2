@@ -34,7 +34,7 @@ class TransactionControllerTest {
     void getStatusByTxnId() throws Exception {
 
         Long txnId=16L;
-        MvcResult result=  mockMvc.perform(MockMvcRequestBuilders.get("/transaction").param("txnId",String.valueOf(txnId)))
+        MvcResult result=  mockMvc.perform(MockMvcRequestBuilders.get("/transaction/1").param("txnId",String.valueOf(txnId)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
