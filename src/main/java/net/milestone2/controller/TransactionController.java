@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -21,6 +22,11 @@ import java.util.Optional;
 
 @RestController
 public class TransactionController {
+
+
+    @Autowired
+    private KafkaTemplate<String,String> kafkaTemplate;
+    private static final String TOPIC= "mile2";
 
     @Autowired
     private WalletService walletService;
@@ -81,6 +87,7 @@ public class TransactionController {
             transactionService.CreateTransaction(txn1);
             transactionService.CreateTransaction(txn2);
 
+            kafkaTemplate.send(TOPIC,"Money transferred successfully");
 
             return new MyResponse("Money transferred successfully",HttpStatus.CREATED);
         }

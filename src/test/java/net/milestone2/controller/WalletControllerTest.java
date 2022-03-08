@@ -44,7 +44,6 @@ class WalletControllerTest {
 
     // for generate token .
     public  String  GenerateMockMvcToken(String userWalletId) throws Exception {
-        // user -->username and password .
         User user=userService.findByMobileno(userWalletId);
 
         String username=user.getUsername();
@@ -73,8 +72,8 @@ class WalletControllerTest {
     void createWallet() throws Exception {
         String mobileNumber="2";
 
-        //generate token
         Assert.assertThrows(NullPointerException.class,() -> GenerateMockMvcToken("8"));
+
         String userToken = GenerateMockMvcToken(mobileNumber);
 
 
@@ -84,7 +83,7 @@ class WalletControllerTest {
                 .andReturn();
 
         String response =result.getResponse().getContentAsString();
-//        Assert.assertEquals("User has already Wallet !",response);
+
         MyResponse msg =objectMapper.readValue(response, MyResponse.class);
 
         // Response class .
@@ -95,7 +94,6 @@ class WalletControllerTest {
         Assert.assertEquals(resMsg.getStatus(),msg.getStatus());
 
 
-        //Delete wallet as well because it is only for testing purpose.
 //        walletService.DeleteWalletById(mobileNumber);
 
 
@@ -118,7 +116,7 @@ class WalletControllerTest {
         String response =result.getResponse().getContentAsString();
         MyResponse msg =objectMapper.readValue(response, MyResponse.class);
 
-        // Response class .
+
         String walletResJson=new String(Files.readAllBytes(Paths.get("src/test/java/rec/AddMoneyRes.json")));
         MyResponse resMsg =objectMapper.readValue(walletResJson, MyResponse.class);
 
@@ -126,8 +124,7 @@ class WalletControllerTest {
         Assert.assertEquals(resMsg.getMsg() ,msg.getMsg());
         Assert.assertEquals(resMsg.getStatus(),msg.getStatus());
 
-        //Substract add money from the wallet.
-        // first find the wallet .
+
         Wallet w =walletService.getWalletById(mobileNumber).orElseThrow(()-> new RuntimeException("Invalid ID"));
         w.setCurr_balance(w.getCurr_balance()-amount);
         walletService.updateWallet(w);

@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -41,6 +42,8 @@ class UserControllerTest {
 
     @Autowired
     UserService userService;
+
+
 
     // for generate token .
     public  String  GenerateMockMvcToken(User user) throws Exception {
@@ -104,14 +107,14 @@ class UserControllerTest {
 
     @Test
     void deleteUser() throws Exception {
-        Long userId=17L;
+        Long userId=20L;
         //Store already user so we can back again data .
         User user=userService.getUserById(userId);
 
         //generate token
         String userToken = GenerateMockMvcToken(user);
 
-        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.delete("/users/17")
+        MvcResult result= mockMvc.perform(MockMvcRequestBuilders.delete("/users/20")
                         .header(AUTHORIZATION,"Bearer "+userToken))
                 .andExpect( MockMvcResultMatchers.status().isOk())
                 .andReturn();

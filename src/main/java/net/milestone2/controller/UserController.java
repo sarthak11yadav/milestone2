@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -24,10 +25,11 @@ public class UserController {
 
     @Autowired
     UserService userService;
-//
-//    @Autowired
-//    KafkaTemplate<String,String> kafkaTemplate;
-//    private static final String TOPIC = "paytm";
+
+    @Autowired
+    private KafkaTemplate<String,String> kafkaTemplate;
+    private static final String TOPIC= "mile2";
+
 
     private static final Logger logger= Logger.getLogger(UserController.class);
 
@@ -39,6 +41,8 @@ public class UserController {
     public String saveUser(@RequestBody User user)
     {
         logger.debug("user created successfully ");
+
+        kafkaTemplate.send(TOPIC,"New user created");
 
         return userService.saveUser(user);
     }

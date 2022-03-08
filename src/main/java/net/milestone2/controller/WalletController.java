@@ -32,16 +32,12 @@ public class WalletController {
     private static final Logger logger= Logger.getLogger(WalletController.class);
 
 
-//    @Autowired
-//    KafkaTemplate<String,String> kafkatemplate;
-//    private static final String TOPIC = "paytm";
 
     @PostMapping("/wallet/{Mobileno}")
     public MyResponse createWallet(@PathVariable("Mobileno") String Mobileno)
     {
 
-//                try {
-//
+
                     Optional<Wallet> TempW=walletService.getWalletById(Mobileno);
                     if(!TempW.isPresent()){
                     Wallet w = new Wallet();
@@ -51,20 +47,15 @@ public class WalletController {
                     User user = userService.findByMobileno(Mobileno);
                     user.setWallet(w);
                     userService.updateUser(user);
-//                        kafkatemplate.send(TOPIC,"Wallet Created");
                         logger.info("Wallet created at given number successfully");
                         return new MyResponse("Wallet creates successfully", HttpStatus.CREATED);
-                }
+                                          }
                     else
                     {
                         logger.debug("wallet already exist");
                         throw new BadRequestException("User has already Wallet !");
                     }
-//                }
-//                catch (Exception e)
-//                {
-//                    throw new RuntimeException("wallet not created");
-//                }
+
     }
 
     @PostMapping("/wallet/{walletId}/{amount}")

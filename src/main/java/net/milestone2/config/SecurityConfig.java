@@ -8,6 +8,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -48,7 +49,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST,"/token").permitAll()
                 .antMatchers(HttpMethod.POST,"/users").permitAll()
-                .anyRequest().permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
@@ -60,5 +61,11 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
     @Bean
     public PasswordEncoder passwordEncoder(){
         return NoOpPasswordEncoder.getInstance();
+    }
+
+    @Override
+    public void configure(WebSecurity web) throws Exception {
+        web.ignoring().mvcMatchers(HttpMethod.OPTIONS, "/**");
+        web.ignoring().mvcMatchers("/swagger-ui.html/**", "/configuration/**", "/swagger-resources/**", "/v3/api-docs","/webjars/**","/swagger-ui.html","/swagger-ui/**","/v3/api-docs/**");
     }
 }
